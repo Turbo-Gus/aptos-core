@@ -38,11 +38,12 @@ class CoinClient(RestClient):
         payload = EntryFunction.natural(
             "0x1::managed_coin",
             "initialize",
-            [TypeTag(StructTag.from_str(f"{sender.address()}::moon_coin::MoonCoin"))],
+            [TypeTag(StructTag.from_str(
+                f"{sender.address()}::moon_coin::MoonCoin"))],
             [
                 TransactionArgument("Moon Coin", Serializer.str),
                 TransactionArgument("MOON", Serializer.str),
-                TransactionArgument(6, Serializer.u64),
+                TransactionArgument(6, Serializer.u8),
                 TransactionArgument(False, Serializer.bool),
             ],
         )
@@ -58,7 +59,8 @@ class CoinClient(RestClient):
         payload = EntryFunction.natural(
             "0x1::managed_coin",
             "register",
-            [TypeTag(StructTag.from_str(f"{coin_address}::moon_coin::MoonCoin"))],
+            [TypeTag(StructTag.from_str(
+                f"{coin_address}::moon_coin::MoonCoin"))],
             [],
         )
         signed_transaction = self.create_single_signer_bcs_transaction(
@@ -74,7 +76,8 @@ class CoinClient(RestClient):
         payload = EntryFunction.natural(
             "0x1::managed_coin",
             "mint",
-            [TypeTag(StructTag.from_str(f"{minter.address()}::moon_coin::MoonCoin"))],
+            [TypeTag(StructTag.from_str(
+                f"{minter.address()}::moon_coin::MoonCoin"))],
             [
                 TransactionArgument(receiver_address, Serializer.struct),
                 TransactionArgument(amount, Serializer.u64),
